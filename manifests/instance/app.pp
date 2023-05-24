@@ -16,18 +16,18 @@ define wordpress::instance::app (
   String $wp_content_group,
   Boolean $wp_content_recurse,
   String $wp_lang,
-  Optional[String] $wp_config_content,
   String $wp_plugin_dir,
   String $wp_additional_config,
   String $wp_table_prefix,
   String $wp_proxy_host,
   String $wp_proxy_port,
-  Optional[String] $wp_site_url,
   Boolean $wp_multisite,
   String $wp_site_domain,
   Boolean $wp_debug,
   Boolean $wp_debug_log,
   Boolean $wp_debug_display,
+  Optional[String] $wp_config_content = undef,
+  Optional[String] $wp_site_url = undef,
 ) {
   if $wp_config_content and ($wp_lang or $wp_debug or $wp_debug_log or $wp_debug_display or
   $wp_proxy_host or $wp_proxy_port or $wp_multisite or $wp_site_domain) {
