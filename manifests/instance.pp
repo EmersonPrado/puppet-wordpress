@@ -90,7 +90,8 @@
 #   Specifies whether to enable the multisite feature. Requires `wp_site_domain` to also be passed. Default: `false`
 #
 # [*wp_site_domain*]
-#   Specifies the `DOMAIN_CURRENT_SITE` value that will be used when configuring multisite. Typically this is the address of the main wordpress instance.  Default: ''
+#   Specifies the `DOMAIN_CURRENT_SITE` value that will be used when configuring multisite.
+#   Typically this is the address of the main wordpress instance.  Default: ''
 #
 # === Requires
 #
