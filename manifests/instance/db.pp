@@ -23,5 +23,4 @@ define wordpress::instance::db (
       privileges => ['ALL'],
     }
   }
-
 }
