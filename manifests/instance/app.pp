@@ -1,3 +1,7 @@
+# == Defined type: wordpress::instance::app
+#
+# This defined type manages a wordpress application instance
+#
 define wordpress::instance::app (
   Stdlib::Absolutepath $install_dir,
   String $install_url,

@@ -1,3 +1,7 @@
+# == Class: wordpress::app
+#
+# This class manages wordpress application layer
+#
 class wordpress::app (
   $install_dir,
   $install_url,

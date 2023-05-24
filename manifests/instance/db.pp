@@ -1,3 +1,7 @@
+# == Defined type: wordpress::instance::db
+#
+# This defined type manages a wordpress database instance
+#
 define wordpress::instance::db (
   Boolean $create_db,
   Boolean $create_db_user,

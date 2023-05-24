@@ -1,3 +1,7 @@
+# == Class: wordpress::db
+#
+# This class manages wordpress database layer
+#
 class wordpress::db (
   $create_db,
   $create_db_user,
