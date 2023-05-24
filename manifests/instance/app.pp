@@ -137,7 +137,7 @@ define wordpress::instance::app (
   } else {
     # Template uses no variables
     file { "${install_dir}/wp-keysalts.php":
-      ensure  => present,
+      ensure  => file,
       content => template('wordpress/wp-keysalts.php.erb'),
       replace => false,
       require => Exec["Extract wordpress ${install_dir}"],
