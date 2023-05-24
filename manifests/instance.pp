@@ -67,6 +67,9 @@
 # [*wp_lang*]
 #   WordPress Localized Language. Default: ''
 #
+# [*wp_config_content*] Specifies the entire content for wp-config.php.
+#   This causes many of the other parameters to be ignored and allows an entirely custom config to be passed.
+#   It is recommended to use wp_additional_config instead of this parameter when possible.
 #
 # [*wp_plugin_dir*]
 #   WordPress Plugin Directory. Full path, no trailing slash. Default: WordPress Default
@@ -92,6 +95,17 @@
 # [*wp_site_domain*]
 #   Specifies the `DOMAIN_CURRENT_SITE` value that will be used when configuring multisite.
 #   Typically this is the address of the main wordpress instance.  Default: ''
+#
+# [*wp_debug*]
+#   Specifies the `WP_DEBUG` value that will control debugging. This must be true if you use the next two debug extensions. Default: 'false'
+#
+# [*wp_debug_log*]
+#   Specifies the `WP_DEBUG_LOG` value that extends debugging to cause all errors to also be saved to a debug.log logfile
+#   inside the /wp-content/ directory. Default: 'false'
+#
+# [*wp_debug_display*]
+#   Specifies the `WP_DEBUG_DISPLAY` value that extends debugging to cause debug messages to be shown inline, in HTML pages.
+#   Default: 'false'
 #
 # === Requires
 #

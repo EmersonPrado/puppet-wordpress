@@ -69,6 +69,9 @@
 # [*wp_lang*]
 #   WordPress Localized Language. Default: ''
 #
+# [*wp_config_content*] Specifies the entire content for wp-config.php.
+#   This causes many of the other parameters to be ignored and allows an entirely custom config to be passed.
+#   It is recommended to use wp_additional_config instead of this parameter when possible.
 #
 # [*wp_plugin_dir*]
 #   WordPress Plugin Directory. Full path, no trailing slash. Default: WordPress Default
