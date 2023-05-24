@@ -130,7 +130,7 @@ define wordpress::instance::app (
   Boolean $wp_debug_log,
   Boolean $wp_debug_display,
   Optional[String] $wp_config_content = undef,
-  Optional[String] $wp_site_url = undef,
+  Optional[String] $wp_site_url       = undef,
 ) {
   if $wp_config_content and ($wp_lang or $wp_debug or $wp_debug_log or $wp_debug_display or
   $wp_proxy_host or $wp_proxy_port or $wp_multisite or $wp_site_domain) {
