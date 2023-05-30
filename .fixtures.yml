@@ -3,5 +3,6 @@ fixtures:
     concat: "puppetlabs/concat"
     mysql: "puppetlabs/mysql"
     stdlib: "puppetlabs/stdlib"
+    archive: "puppet/archive"
   symlinks:
     wordpress: "#{source_dir}"

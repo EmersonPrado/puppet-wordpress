@@ -193,18 +193,16 @@ define wordpress::instance::app (
   }
 
   ## Download and extract
-  exec { "Download wordpress ${install_url}/wordpress-${version}.tar.gz to ${install_dir}":
-    command => "curl -L -O ${install_url}/${install_file_name}",
-    creates => "${install_dir}/${install_file_name}",
-    require => File[$install_dir],
-    user    => $wp_owner,
-    group   => $wp_group,
-  }
-  -> exec { "Extract wordpress ${install_dir}":
-    command => "tar zxvf ./${install_file_name} --strip-components=1",
-    creates => "${install_dir}/index.php",
-    user    => $wp_owner,
-    group   => $wp_group,
+  archive { "Install wordpress ${version} in ${install_dir}":
+    source          => "${install_url}/${install_file_name}",
+    filename        => $install_file_name,
+    path            => "${install_dir}/${install_file_name}",
+    creates         => "${install_dir}/${install_file_name}",
+    extract         => true,
+    extract_path    => $install_dir,
+    extract_command => 'tar xzf %s --strip-components=1',
+    cleanup         => true,
+    require         => File[$install_dir],
   }
   ~> exec { "Change ownership ${install_dir}":
     command     => "chown -R ${wp_owner}:${wp_group} ${install_dir}",
@@ -219,7 +217,7 @@ define wordpress::instance::app (
       owner   => $wp_content_owner,
       group   => $wp_content_group,
       recurse => $wp_content_recurse,
-      require => Exec["Extract wordpress ${install_dir}"],
+      require => Archive["Install wordpress ${version} in ${install_dir}"],
     }
   }
 
@@ -229,7 +227,7 @@ define wordpress::instance::app (
     owner   => $wp_config_owner,
     group   => $wp_config_group,
     mode    => $wp_config_mode,
-    require => Exec["Extract wordpress ${install_dir}"],
+    require => Archive["Install wordpress ${version} in ${install_dir}"],
   }
   if $wp_config_content {
     concat::fragment { "${install_dir}/wp-config.php body":
@@ -243,7 +241,7 @@ define wordpress::instance::app (
       ensure  => file,
       content => template('wordpress/wp-keysalts.php.erb'),
       replace => false,
-      require => Exec["Extract wordpress ${install_dir}"],
+      require => Archive["Install wordpress ${version} in ${install_dir}"],
     }
     concat::fragment { "${install_dir}/wp-config.php keysalts":
       target  => "${install_dir}/wp-config.php",
