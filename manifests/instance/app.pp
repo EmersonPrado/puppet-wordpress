@@ -204,11 +204,9 @@ define wordpress::instance::app (
     cleanup         => true,
     require         => File[$install_dir],
   }
-  ~> exec { "Change ownership ${install_dir}":
-    command     => "chown -R ${wp_owner}:${wp_group} ${install_dir}",
-    refreshonly => true,
-    user        => $wp_owner,
-    group       => $wp_group,
+  -> exec { "Change ownership of ${install_dir}":
+    command => "chown -R ${wp_owner}:${wp_group} ${install_dir}",
+    unless  => "find ${install_dir} ! \\( -user ${wp_owner} -group ${wp_group} \\) -exec false {} +",
   }
 
   if $manage_wp_content {
